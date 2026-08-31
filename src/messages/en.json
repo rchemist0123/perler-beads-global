@@ -1,72 +1,284 @@
 {
   "metadata": {
     "title": "Perler Beads Pattern Generator",
-    "description": "Upload images, adjust precision, and generate pixel art patterns with one click",
-    "appleWebAppTitle": "Beads Generator"
+    "description": "Upload an image, adjust precision, and generate pixel art patterns with one click — a simple and practical tool",
+    "appleWebAppTitle": "Bead Generator"
+  },
+  "common": {
+    "cancel": "Cancel",
+    "save": "Save",
+    "close": "Close",
+    "download": "Download",
+    "restore": "Restore",
+    "apply": "Apply",
+    "selectAll": "Select All",
+    "deselectAll": "Deselect All",
+    "importConfig": "Import Config",
+    "exportConfig": "Export Config",
+    "search": "Search",
+    "loading": "Loading...",
+    "back": "Back",
+    "beads": "beads"
+  },
+  "header": {
+    "brandName": "Perler Beads",
+    "toolName": "Pattern Generator",
+    "subtitle": "Mobile Version",
+    "slogan": "Pixel creativity for everyone",
+    "desktopDetected": "Landscape device detected",
+    "desktopRecommendation": "The desktop workbench offers a more complete set of features and a better experience. We recommend switching to it.",
+    "stayHere": "Stay here",
+    "goToDesktop": "Go to Desktop Workbench",
+    "desktopWorkbench": "Desktop Workbench",
+    "sourceAttribution": "Please credit the source or keep image watermarks when publishing"
+  },
+  "upload": {
+    "dragDrop": "Drag and drop an image here, or",
+    "clickToSelect": "click to select a file",
+    "supportedFormats": "Supports JPG, PNG images, or CSV data files",
+    "tip": "Tip: Before converting pixel art, make sure the image edges align with the pixel grid boundaries for more precise cutting and better results."
+  },
+  "controls": {
+    "granularity": "Horizontal grid count (10-300):",
+    "mergeThreshold": "Color merge threshold (0-100):",
+    "applyNumbers": "Apply Numbers",
+    "removeBackground": "Remove Background",
+    "processingMode": "Processing Mode:",
+    "cartoonMode": "Cartoon (Dominant)",
+    "realisticMode": "Realistic (Average)",
+    "colorSystem": "Color System:",
+    "managePalette": "Manage Palette",
+    "customPaletteActive": "Custom palette active",
+    "colors": "colors"
+  },
+  "colorManagement": {
+    "removeNoise": "Remove Noise Colors",
+    "clickToExclude": "Click a color in the list below to exclude it from the available palette.",
+    "totalCount": "Total: {count} beads",
+    "excludedColors": "Excluded colors ({count})",
+    "clickToRestore": "Click to restore {key}",
+    "clickToExcludeColor": "Click to exclude {key}",
+    "restoreAll": "Restore All Colors",
+    "noExcluded": "No excluded colors",
+    "tooFewColors": "Too few or no available colors. Please check the excluded colors in the statistics list above and restore some, or switch palettes.",
+    "viewExcluded": "View excluded colors ({count})"
+  },
+  "modes": {
+    "manualEdit": "Enter Manual Edit Mode",
+    "focusMode": "Enter Focus Bead Mode (AlphaTest)",
+    "downloadPattern": "Download Bead Pattern",
+    "exitManualEdit": "Exit Manual Edit Mode"
+  },
+  "manualEdit": {
+    "useMenuTip": "Use the top-right menu for actions",
+    "desktopRecommend": "Desktop recommended for more precise coloring",
+    "highResGrid": "High-resolution grid ({n}x{m})",
+    "canvasAutoExpanded": "Canvas auto-expanded — scroll horizontally and zoom in to view fine details"
+  },
+  "download": {
+    "title": "Download Pattern Settings",
+    "showGridLines": "Show Grid Lines",
+    "gridLineInterval": "Grid line interval (draw a line every N cells)",
+    "gridLineColor": "Grid Line Color",
+    "showCoordinates": "Show Coordinates",
+    "hideColorCodes": "Hide Cell Color Codes",
+    "includeStats": "Include Color Statistics",
+    "exportCsv": "Also Export Source Data",
+    "exportCsvDesc": "Export a CSV file with hex color values for re-import",
+    "downloadPattern": "Download Pattern",
+    "colorNames": {
+      "darkGray": "Dark Gray",
+      "red": "Red",
+      "blue": "Blue",
+      "green": "Green",
+      "purple": "Purple",
+      "orange": "Orange",
+      "gray": "Gray"
+    }
+  },
+  "palette": {
+    "title": "Palette",
+    "searchPlaceholder": "Search color codes...",
+    "paletteCenter": "Palette Management Center",
+    "instructions": "Select the bead color series you want to use. You can choose a preset palette, then manually add or remove specific color codes as needed. Click the 'Save & Apply' button at the bottom when done.",
+    "series": "Series",
+    "other": "Other",
+    "saveAndApply": "Save & Apply",
+    "showImageColors": "Current Palette",
+    "expandFullPalette": "Full Palette",
+    "colorReplace": "Batch Replace",
+    "colorReplaceMode": "Color Replace Mode",
+    "step1SelectSource": "Click the canvas to select the color to replace",
+    "highlightPositions": "Highlight positions",
+    "step2SelectTarget": "Select target color",
+    "replacedColor": "Replaced color",
+    "bgEraseMode": "Quick Erase",
+    "bgEraseDesc": "Quick erase background",
+    "bgEraseHelp": "Click a color region on the canvas to erase it",
+    "eraserMode": "Eraser Mode",
+    "eraserDesc": "Click pixel cells to erase",
+    "eraserHelp": "Click pixel cells on the canvas to erase them",
+    "eraser": "Eraser",
+    "areaErase": "Area Erase",
+    "batchReplace": "Batch Replace",
+    "currentPalette": "Current Palette",
+    "fullPalette": "Full Palette",
+    "current": "Current",
+    "noColors": "No colors available for the current pattern."
+  },
+  "focus": {
+    "title": "Focus Bead Mode (AlphaTest)",
+    "loading": "Loading...",
+    "back": "Back",
+    "selectColor": "Select a color",
+    "estimatedTime": "Est. {time} min remaining",
+    "nextBlock": "Next block",
+    "colorCompleted": "Current color completed",
+    "searchColors": "Search colors...",
+    "sortByProgress": "Sort by Progress",
+    "sortByName": "Sort by Name",
+    "sortByQuantity": "Sort by Quantity",
+    "colors": "Colors",
+    "locate": "Locate"
+  },
+  "settings": {
+    "title": "Settings",
+    "smartGuide": "Smart Guide",
+    "nearestFirst": "Nearest First",
+    "nearestDesc": "Recommend the nearest cells",
+    "largestFirst": "Largest First",
+    "largestDesc": "Prioritize large color block areas",
+    "edgeFirst": "Edge First",
+    "edgeDesc": "Complete edges first, then fill interior",
+    "displaySettings": "Display Settings",
+    "showSectionLines": "Show Section Lines",
+    "sectionDesc": "Divide the canvas into sections to help with positioning",
+    "sectionInterval": "Section Interval",
+    "cells": "cells",
+    "sectionLineColor": "Section Line Color",
+    "celebrationAnim": "Celebration Animation",
+    "celebrationDesc": "Show confetti when a color is completed",
+    "dataManagement": "Data Management",
+    "exportProgress": "Export Progress Data",
+    "resetProgress": "Reset All Progress",
+    "about": "About",
+    "focusModeVersion": "Focus Bead Mode v1.0",
+    "mobileOptimized": "Bead assistant designed for mobile",
+    "tipLongPress": "Tip: Long press a cell to quickly mark it",
+    "tipPinchZoom": "Tip: Pinch to zoom for details"
+  },
+  "completion": {
+    "title": "Work Complete",
+    "totalTime": "Total time: {time}",
+    "totalBeads": "Completed: {count} beads",
+    "takePhoto": "Take a photo to create your own completion card!",
+    "cameraError": "Cannot access camera. This may be due to permission restrictions or unsupported device. You can use the artwork image to generate the completion card.",
+    "openCamera": "Open Camera",
+    "skipPhoto": "Skip photo, use artwork image",
+    "capturePhoto": "Capture",
+    "downloadCard": "Download Completion Card",
+    "retakePhoto": "Retake Photo",
+    "later": "Maybe Later",
+    "brandName": "Perler Beads Pattern Generator",
+    "hours": "hours",
+    "minutes": "minutes",
+    "seconds": "seconds",
+    "timeFormat": "{hours}h {minutes}m"
+  },
+  "celebration": {
+    "completed": "Complete!",
+    "colorDone": "Color done"
+  },
+  "toolbar": {
+    "closePalette": "Close Palette",
+    "openPalette": "Open Palette",
+    "closeMagnifier": "Close Magnifier",
+    "openMagnifier": "Open Magnifier",
+    "exitEditMode": "Exit Manual Edit Mode"
+  },
+  "magnifier": {
+    "dragToSelect": "Drag on the canvas to select an area to magnify",
+    "title": "Magnifier",
+    "reselectArea": "Reselect area",
+    "closeMagnifier": "Close Magnifier",
+    "current": "Current"
+  },
+  "focusPreDownload": {
+    "title": "Enter Focus Bead Mode",
+    "importantReminder": "Important Reminder",
+    "warningText": "After entering Focus Bead Mode, you will not be able to return to the current editing screen. We recommend downloading the current data file (CSV format) first so you can re-import it later.",
+    "features": "Focus Bead Mode features:",
+    "feature1": "Bead assistant optimized for mobile",
+    "feature2": "Color guidance and progress tracking",
+    "feature3": "Touch controls and pinch-to-zoom",
+    "feature4": "Current editing state will be lost upon exit",
+    "downloadAndEnter": "Download Data File & Enter",
+    "enterDirectly": "Enter Directly (No Download)",
+    "cancel": "Cancel"
+  },
+  "donation": {
+    "title": "Buy Me A Milk Tea",
+    "description": "Open source projects are communities that closely connect creators and users. If you'd like this project to keep growing, consider buying the author a milk tea.",
+    "support": "Your support keeps the author motivated to continue developing this project.",
+    "qrAlt": "Donation QR Code",
+    "instruction": "Scan the QR code above with WeChat to buy the author a milk tea."
+  },
+  "pwa": {
+    "install": "Install App"
+  },
+  "footer": {
+    "buyMilkTea": "Buy the author a milk tea",
+    "copyright": "Perler Beads Pattern Generator"
+  },
+  "alerts": {
+    "unsupportedFileType": "Unsupported file type: {type}. Please select JPG, PNG images or CSV data files.\nFile: {name}",
+    "fileError": "Error processing file, please try again.",
+    "csvImportSuccess": "CSV imported successfully! Grid size: {n}x{m}, using {count} colors.",
+    "csvImportFailed": "CSV import failed: {error}",
+    "cannotReadFile": "Unable to read file.",
+    "emptyPalette": "Error: Available palette is empty (all colors may have been excluded). Cannot process image. Try restoring some colors.",
+    "cannotLoadImage": "Unable to load image.",
+    "excludeNotReady": "Cannot exclude color, initial color data not ready yet. Please wait.",
+    "excludeNoAlternatives": "Cannot exclude color {key}, other original colors are also excluded. Please restore some colors first.",
+    "excludeMissingData": "Cannot exclude color, missing required data.",
+    "generateFirst": "Please generate a pattern first before using background removal.",
+    "noBackgroundEdge": "No identifiable background colors at the edges.",
+    "noBackgroundArea": "No background area found to remove.",
+    "noSelectedColors": "No colors selected, cannot export.",
+    "importInvalidColors": "Import complete, but the following invalid colors were ignored:\n{colors}",
+    "importNoValidColors": "The imported file contains no valid colors.",
+    "importSuccess": "Successfully imported {count} colors!",
+    "importFailed": "Import failed: {error}",
+    "invalidFileFormat": "Invalid file format: file must contain a 'selectedHexValues' array.",
+    "readFileFailed": "Failed to read file.",
+    "noAvailableColors": "No available colors, please restore some excluded colors"
   },
   "landing": {
-    "nav": {
-      "brand": "Perler Beads Generator",
-      "getStarted": "Get Started"
-    },
-    "hero": {
-      "title": "Create Perler Bead Patterns with Ease",
-      "subtitle": "Upload any image and transform it into a smart pixel art pattern",
-      "description": "Upload, adjust, and download. A simple yet powerful tool for generating perler bead patterns.",
-      "cta": "Get Started Now",
-      "ctaSecondary": "Explore Features"
-    },
-    "features": {
-      "title": "Features",
-      "subtitle": "Everything you need to create perfect bead patterns",
-      "pixelization": {
-        "title": "Smart Pixelization",
-        "description": "Intelligent pixelization based on dominant colors for clean patterns. Freely adjust the granularity."
-      },
-      "palette": {
-        "title": "Multi-brand Color Palettes",
-        "description": "Supports MARD, COCO, Manman, Panpan, Mixiaowo and other brand color systems."
-      },
-      "merging": {
-        "title": "Auto Color Merging",
-        "description": "BFS-based automatic merging of similar colors to eliminate noise and create clean color regions."
-      },
-      "background": {
-        "title": "Background Removal",
-        "description": "Automatically detects and removes external backgrounds using boundary flood fill algorithm."
-      },
-      "editing": {
-        "title": "Manual Editing",
-        "description": "Fine-tune details manually with color picker, paint, and eraser tools."
-      },
-      "export": {
-        "title": "Export Patterns & Lists",
-        "description": "Download patterns with color keys and purchase lists with per-color bead counts as PNG."
-      }
-    },
-    "howItWorks": {
-      "title": "How It Works",
-      "subtitle": "Simple as 1-2-3",
-      "step1": {
-        "title": "Upload Image",
-        "description": "Drag and drop or click to upload a JPG or PNG image."
-      },
-      "step2": {
-        "title": "Adjust Settings",
-        "description": "Choose granularity, color merge strength, and color palette to customize your pattern."
-      },
-      "step3": {
-        "title": "Download",
-        "description": "Download your finished pattern and purchase list to start making perler beads."
-      }
-    },
-    "colorSystems": {
-      "title": "Supported Color Systems",
-      "subtitle": "Compatible with major bead brand color systems"
-    },
-    "footer": {
-      "copyright": "Perler Beads Generator. Apache 2.0 License.",
-      "builtWith": "Built with Next.js and Canvas API"
-    }
+    "heroTitle": "Perler Beads Pattern Generator",
+    "heroSubtitle": "Pixel creativity at your fingertips",
+    "heroDescription": "Upload an image, adjust precision, and generate pixel art patterns with one click — a simple and practical bead pattern tool.",
+    "getStarted": "Get Started",
+    "featuresTitle": "Features",
+    "feature1Title": "Smart Pixelation",
+    "feature1Desc": "Supports Cartoon and Realistic modes with flexible control over grid precision and color merge thresholds.",
+    "feature2Title": "Multiple Palette Support",
+    "feature2Desc": "Multiple preset bead palettes, custom palette management, and support for various color code systems.",
+    "feature3Title": "Noise Color Removal",
+    "feature3Desc": "One-click noise exclusion with smart remapping to nearby available colors, keeping the image clean.",
+    "feature4Title": "Manual Editing",
+    "feature4Desc": "Fine-tune every pixel cell with tools like brush, eraser, and color replacement.",
+    "feature5Title": "Focus Bead Mode",
+    "feature5Desc": "Gamified bead assistant with color guidance, progress tracking, and smart recommendations.",
+    "feature6Title": "Download & Export",
+    "feature6Desc": "Download annotated patterns and shopping lists, with CSV data import/export support.",
+    "howItWorksTitle": "How It Works",
+    "step1Title": "Upload Image",
+    "step1Desc": "Supports JPG, PNG images or CSV data file import.",
+    "step2Title": "Adjust Parameters",
+    "step2Desc": "Tune grid precision and color merge threshold, select palette and processing mode.",
+    "step3Title": "Generate & Download",
+    "step3Desc": "Preview the result, then download the annotated pattern and shopping list.",
+    "supportedSystems": "Supported Color Systems",
+    "tryNow": "Try Now"
   }
 }

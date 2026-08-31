@@ -1,72 +1,284 @@
 {
   "metadata": {
-    "title": "アイロンビーズ図案ジェネレーター | Perler Beads Generator",
-    "description": "画像をアップロードして、精度を調整し、ワンクリックでピクセルアート図案を生成",
-    "appleWebAppTitle": "ビーズジェネレーター"
+    "title": "アイロンビーズ 図案ジェネレーター | Perler Beads Generator",
+    "description": "画像をアップロードし、精度を調整して、ワンクリックでピクセルアート図案を生成するシンプルで実用的なツール",
+    "appleWebAppTitle": "ビーズ生成"
+  },
+  "common": {
+    "cancel": "キャンセル",
+    "save": "保存",
+    "close": "閉じる",
+    "download": "ダウンロード",
+    "restore": "復元",
+    "apply": "適用",
+    "selectAll": "全選択",
+    "deselectAll": "全解除",
+    "importConfig": "設定をインポート",
+    "exportConfig": "設定をエクスポート",
+    "search": "検索",
+    "loading": "読み込み中...",
+    "back": "戻る",
+    "beads": "粒"
+  },
+  "header": {
+    "brandName": "Perler Beads",
+    "toolName": "図案ジェネレーター",
+    "subtitle": "モバイル版",
+    "slogan": "ピクセル創作をすべての人に",
+    "desktopDetected": "横画面デバイスを検出しました",
+    "desktopRecommendation": "デスクトップワークベンチではより充実した機能と操作体験をご利用いただけます。",
+    "stayHere": "このページに留まる",
+    "goToDesktop": "デスクトップワークベンチへ",
+    "desktopWorkbench": "横画面ワークベンチ",
+    "sourceAttribution": "公開時は出典の明記または画像の透かしを残してください"
+  },
+  "upload": {
+    "dragDrop": "画像をここにドラッグ＆ドロップ、または",
+    "clickToSelect": "クリックしてファイルを選択",
+    "supportedFormats": "JPG, PNG 画像形式、または CSV データファイルに対応",
+    "tip": "ヒント：ピクセル画像を変換する前に、画像の端がピクセルグリッドの境界線と一致していることを確認してください。より正確なカットと仕上がりが得られます。"
+  },
+  "controls": {
+    "granularity": "横軸分割数 (10-300):",
+    "mergeThreshold": "色の統合しきい値 (0-100):",
+    "applyNumbers": "数値を適用",
+    "removeBackground": "ワンクリック背景除去",
+    "processingMode": "処理モード:",
+    "cartoonMode": "カートゥーン（主要色）",
+    "realisticMode": "リアル（平均）",
+    "colorSystem": "色番号システム:",
+    "managePalette": "パレット管理",
+    "customPaletteActive": "カスタムパレットを使用中",
+    "colors": "色"
+  },
+  "colorManagement": {
+    "removeNoise": "ノイズカラー除去",
+    "clickToExclude": "下のリストの色をクリックして、使用可能なリストから除外できます。",
+    "totalCount": "合計: {count} 粒",
+    "excludedColors": "除外された色 ({count})",
+    "clickToRestore": "{key} を復元するにはクリック",
+    "clickToExcludeColor": "{key} を除外するにはクリック",
+    "restoreAll": "すべての色を一括復元",
+    "noExcluded": "除外された色はありません",
+    "tooFewColors": "現在使用可能な色が少なすぎるか、ありません。上の統計リストで除外された色を確認して一部を復元するか、パレットを変更してください。",
+    "viewExcluded": "除外された色を表示 ({count})"
+  },
+  "modes": {
+    "manualEdit": "手動編集モードに入る",
+    "focusMode": "集中ビーズモードに入る（AlphaTest）",
+    "downloadPattern": "ビーズ図案をダウンロード",
+    "exitManualEdit": "手動編集モードを終了"
+  },
+  "manualEdit": {
+    "useMenuTip": "右上のメニューから操作してください",
+    "desktopRecommend": "PCでの操作を推奨します。より精密な着色が可能です",
+    "highResGrid": "高精度グリッド ({n}x{m})",
+    "canvasAutoExpanded": "キャンバスが自動的に拡大されました。左右にスクロールし、拡大して精細な画像を確認できます"
+  },
+  "download": {
+    "title": "図案ダウンロード設定",
+    "showGridLines": "グリッド線を表示",
+    "gridLineInterval": "グリッド線間隔（N マスごとに線を引く）",
+    "gridLineColor": "グリッド線の色",
+    "showCoordinates": "座標番号を表示",
+    "hideColorCodes": "マス内の色番号を非表示",
+    "includeStats": "色番号統計を含む",
+    "exportCsv": "ソースデータも同時にエクスポート",
+    "exportCsvDesc": "再インポート用のhexカラー値CSVファイルをエクスポート",
+    "downloadPattern": "図案をダウンロード",
+    "colorNames": {
+      "darkGray": "ダークグレー",
+      "red": "赤",
+      "blue": "青",
+      "green": "緑",
+      "purple": "紫",
+      "orange": "オレンジ",
+      "gray": "グレー"
+    }
+  },
+  "palette": {
+    "title": "パレット",
+    "searchPlaceholder": "色番号を検索...",
+    "paletteCenter": "パレット管理センター",
+    "instructions": "使用するビーズの色系を選択してください。プリセットパレットを選択した後、必要に応じて特定の色番号を手動で追加・削除できます。完了したら下部の「保存して適用」ボタンをクリックしてください。",
+    "series": "シリーズ",
+    "other": "その他",
+    "saveAndApply": "保存して適用",
+    "showImageColors": "現在のパレット",
+    "expandFullPalette": "フルパレット",
+    "colorReplace": "一括置換",
+    "colorReplaceMode": "色の置換モード",
+    "step1SelectSource": "キャンバス上で置換する色をクリックしてください",
+    "highlightPositions": "位置をハイライト",
+    "step2SelectTarget": "置換先の色を選択",
+    "replacedColor": "置換された色",
+    "bgEraseMode": "ワンクリック消去",
+    "bgEraseDesc": "ワンクリックで背景を消去",
+    "bgEraseHelp": "キャンバス上の色領域をクリックして消去",
+    "eraserMode": "消しゴムモード",
+    "eraserDesc": "ピクセルマスをクリックして消去",
+    "eraserHelp": "キャンバス上のピクセルマスをクリックして消去",
+    "eraser": "消しゴム",
+    "areaErase": "エリア消去",
+    "batchReplace": "一括置換",
+    "currentPalette": "現在のパレット",
+    "fullPalette": "フルパレット",
+    "current": "現在",
+    "noColors": "現在の図面には使用可能な色がありません。"
+  },
+  "focus": {
+    "title": "集中ビーズモード（AlphaTest）",
+    "loading": "読み込み中...",
+    "back": "戻る",
+    "selectColor": "色を選択してください",
+    "estimatedTime": "残り約 {time}分",
+    "nextBlock": "次のブロック",
+    "colorCompleted": "現在の色が完了しました",
+    "searchColors": "色を検索...",
+    "sortByProgress": "進捗順で並べ替え",
+    "sortByName": "名前順で並べ替え",
+    "sortByQuantity": "数量順で並べ替え",
+    "colors": "色",
+    "locate": "位置を特定"
+  },
+  "settings": {
+    "title": "設定",
+    "smartGuide": "スマートガイド",
+    "nearestFirst": "最寄り優先",
+    "nearestDesc": "最も近いマスを推薦します",
+    "largestFirst": "大きいブロック優先",
+    "largestDesc": "大きな色ブロックエリアを優先的に推薦します",
+    "edgeFirst": "端から優先",
+    "edgeDesc": "先に端を完成させてから内部を埋めます",
+    "displaySettings": "表示設定",
+    "showSectionLines": "区切り線を表示",
+    "sectionDesc": "キャンバスをブロックに分割して位置確認を支援",
+    "sectionInterval": "区切り間隔",
+    "cells": "マス",
+    "sectionLineColor": "区切り線の色",
+    "celebrationAnim": "お祝いアニメーション",
+    "celebrationDesc": "色の完了時に紙吹雪エフェクトを表示",
+    "dataManagement": "データ管理",
+    "exportProgress": "進捗データをエクスポート",
+    "resetProgress": "すべての進捗をリセット",
+    "about": "について",
+    "focusModeVersion": "集中ビーズモード v1.0",
+    "mobileOptimized": "モバイル向けに設計されたビーズアシスタント",
+    "tipLongPress": "ヒント：マスを長押しすると素早くマークできます",
+    "tipPinchZoom": "ヒント：ピンチズームで細部を確認できます"
+  },
+  "completion": {
+    "title": "作品完成",
+    "totalTime": "合計時間：{time}",
+    "totalBeads": "完成：{count} 粒のビーズ",
+    "takePhoto": "写真を撮って、あなただけの完成カードを作りましょう！",
+    "cameraError": "カメラにアクセスできません。権限の制限またはデバイスが未対応の可能性があります。作品画像で完成カードを作成できます。",
+    "openCamera": "カメラを開く",
+    "skipPhoto": "撮影をスキップして作品画像を使用",
+    "capturePhoto": "撮影",
+    "downloadCard": "完成カードをダウンロード",
+    "retakePhoto": "撮り直す",
+    "later": "後で",
+    "brandName": "アイロンビーズ 図案ジェネレーター",
+    "hours": "時間",
+    "minutes": "分",
+    "seconds": "秒",
+    "timeFormat": "{hours}時間{minutes}分"
+  },
+  "celebration": {
+    "completed": "完成！",
+    "colorDone": "色の完了"
+  },
+  "toolbar": {
+    "closePalette": "パレットを閉じる",
+    "openPalette": "パレットを開く",
+    "closeMagnifier": "拡大鏡を閉じる",
+    "openMagnifier": "拡大鏡を開く",
+    "exitEditMode": "手動編集モードを終了"
+  },
+  "magnifier": {
+    "dragToSelect": "キャンバス上でドラッグして拡大するエリアを選択してください",
+    "title": "拡大鏡",
+    "reselectArea": "エリアを再選択",
+    "closeMagnifier": "拡大鏡を閉じる",
+    "current": "現在"
+  },
+  "focusPreDownload": {
+    "title": "集中ビーズモードに入る",
+    "importantReminder": "重要なお知らせ",
+    "warningText": "集中ビーズモードに入ると、現在の編集画面に戻ることができなくなります。後で再インポートできるよう、現在のデータファイル（CSV形式）を先にダウンロードして保存することをお勧めします。",
+    "features": "集中ビーズモードの特徴：",
+    "feature1": "モバイルに最適化されたビーズアシスタント",
+    "feature2": "カラーガイドと進捗追跡を提供",
+    "feature3": "タッチ操作とピンチズームに対応",
+    "feature4": "終了すると現在の編集状態が失われます",
+    "downloadAndEnter": "データファイルをダウンロードして入る",
+    "enterDirectly": "直接入る（ダウンロードなし）",
+    "cancel": "キャンセル"
+  },
+  "donation": {
+    "title": "Buy Me A Milk Tea",
+    "description": "オープンソースプロジェクトは、開発者とユーザーを密接につなぐコミュニティです。このプロジェクトの成長を望まれるなら、開発者にミルクティーを一杯ごちそうしてください。",
+    "support": "皆様のご支援が、開発者がプロジェクトを続けていく原動力です。",
+    "qrAlt": "支援用QRコード",
+    "instruction": "上のQRコードをWeChatでスキャンして、開発者にミルクティーを一杯ごちそうしてください。"
+  },
+  "pwa": {
+    "install": "アプリをインストール"
+  },
+  "footer": {
+    "buyMilkTea": "開発者にミルクティーを一杯",
+    "copyright": "アイロンビーズ 図案ジェネレーター"
+  },
+  "alerts": {
+    "unsupportedFileType": "サポートされていないファイル形式: {type}。JPG、PNG画像またはCSVデータファイルを選択してください。\nファイル名: {name}",
+    "fileError": "ファイルの処理中にエラーが発生しました。再試行してください。",
+    "csvImportSuccess": "CSVファイルのインポートに成功しました！図案サイズ: {n}x{m}、使用色数: {count}色",
+    "csvImportFailed": "CSVインポートに失敗しました: {error}",
+    "cannotReadFile": "ファイルを読み取れません。",
+    "emptyPalette": "エラー: 使用可能なパレットが空です（すべての色が除外されている可能性があります）。画像を処理できません。一部の色を復元してみてください。",
+    "cannotLoadImage": "画像を読み込めません。",
+    "excludeNotReady": "色を除外できません。初期カラーデータがまだ準備できていません。しばらくお待ちください。",
+    "excludeNoAlternatives": "色 {key} を除外できません。元の他の使用可能な色も除外されています。まず一部の色を復元してください。",
+    "excludeMissingData": "色を除外できません。必要なデータが不足しています。",
+    "generateFirst": "背景除去を使用する前に、まず図案を生成してください。",
+    "noBackgroundEdge": "端に認識可能な背景色がありません。",
+    "noBackgroundArea": "除去可能な背景領域が見つかりませんでした。",
+    "noSelectedColors": "選択された色がないため、エクスポートできません。",
+    "importInvalidColors": "インポートが完了しましたが、以下の無効な色は無視されました:\n{colors}",
+    "importNoValidColors": "インポートされたファイルには有効な色が含まれていません。",
+    "importSuccess": "{count}色を正常にインポートしました！",
+    "importFailed": "インポートに失敗しました: {error}",
+    "invalidFileFormat": "無効なファイル形式: ファイルには 'selectedHexValues' 配列が含まれている必要があります。",
+    "readFileFailed": "ファイルの読み取りに失敗しました。",
+    "noAvailableColors": "使用可能な色がありません。除外された色の一部を復元してください"
   },
   "landing": {
-    "nav": {
-      "brand": "Perler Beads Generator",
-      "getStarted": "始める"
-    },
-    "hero": {
-      "title": "アイロンビーズの図案を簡単に作成",
-      "subtitle": "画像をアップロードして、スマートなピクセルアート図案に変換",
-      "description": "アップロード、調整、ダウンロード。シンプルで実用的なアイロンビーズ図案生成ツール。",
-      "cta": "今すぐ始める",
-      "ctaSecondary": "機能を見る"
-    },
-    "features": {
-      "title": "機能",
-      "subtitle": "完璧なビーズ図案を作るために必要なすべて",
-      "pixelization": {
-        "title": "スマートピクセル化",
-        "description": "主要色に基づくインテリジェントなピクセル化で、きれいな図案を生成。粒度を自由に調整できます。"
-      },
-      "palette": {
-        "title": "マルチブランドカラーパレット",
-        "description": "MARD、COCO、漫漫、盼盼、咪小窝など、様々なブランドのカラーシステムに対応。"
-      },
-      "merging": {
-        "title": "自動カラーマージ",
-        "description": "BFSベースの類似色自動マージで、ノイズを除去し、きれいな色領域を作成。"
-      },
-      "background": {
-        "title": "背景除去",
-        "description": "境界フラッドフィルアルゴリズムで外部背景を自動検出・除去。"
-      },
-      "editing": {
-        "title": "手動編集",
-        "description": "カラーピッカー、ペイント、消しゴムツールで細部を手動で微調整。"
-      },
-      "export": {
-        "title": "図案＆リストのエクスポート",
-        "description": "カラーキー付き図案と色別ビーズ数量リストをPNGでダウンロード。"
-      }
-    },
-    "howItWorks": {
-      "title": "使い方",
-      "subtitle": "3ステップで簡単に",
-      "step1": {
-        "title": "画像アップロード",
-        "description": "JPGまたはPNG画像をドラッグ＆ドロップまたはクリックしてアップロード。"
-      },
-      "step2": {
-        "title": "設定を調整",
-        "description": "粒度、カラーマージ強度、カラーパレットを選択してカスタマイズ。"
-      },
-      "step3": {
-        "title": "ダウンロード",
-        "description": "完成した図案と購入リストをダウンロードして、ビーズ制作を始めましょう。"
-      }
-    },
-    "colorSystems": {
-      "title": "対応カラーシステム",
-      "subtitle": "主要ビーズブランドのカラーシステムに対応"
-    },
-    "footer": {
-      "copyright": "Perler Beads Generator. Apache 2.0 License.",
-      "builtWith": "Next.jsとCanvas APIで構築"
-    }
+    "heroTitle": "アイロンビーズ 図案ジェネレーター",
+    "heroSubtitle": "ピクセル創作を指先に",
+    "heroDescription": "画像をアップロードし、精度を調整して、ワンクリックでピクセルアート図案を生成するシンプルで実用的なツールです。",
+    "getStarted": "始める",
+    "featuresTitle": "機能紹介",
+    "feature1Title": "スマートピクセル化",
+    "feature1Desc": "カートゥーンモードとリアルモードに対応し、分割精度と色の統合しきい値を柔軟に調整できます。",
+    "feature2Title": "マルチパレット対応",
+    "feature2Desc": "複数のプリセットビーズパレットを提供し、カスタムパレット管理と様々な色番号システムに対応しています。",
+    "feature3Title": "ノイズカラー除去",
+    "feature3Desc": "ワンクリックでノイズカラーを除外し、近隣の使用可能な色にスマートリマッピングして画面を整えます。",
+    "feature4Title": "手動編集",
+    "feature4Desc": "ブラシ、消しゴム、色の置換などのツールで各ピクセルマスを細かく調整できます。",
+    "feature5Title": "集中ビーズモード",
+    "feature5Desc": "ゲーミフィケーションされたビーズアシスタントが、カラーガイド、進捗追跡、スマート推薦を提供します。",
+    "feature6Title": "ダウンロード＆エクスポート",
+    "feature6Desc": "色番号付きの図案と購入リストをダウンロード。CSVデータのインポート・エクスポートにも対応。",
+    "howItWorksTitle": "使い方",
+    "step1Title": "画像をアップロード",
+    "step1Desc": "JPG、PNG形式の画像またはCSVデータファイルのインポートに対応しています。",
+    "step2Title": "パラメータを調整",
+    "step2Desc": "分割精度と色の統合しきい値を調節し、パレットと処理モードを選択します。",
+    "step3Title": "生成＆ダウンロード",
+    "step3Desc": "効果をプレビューした後、色番号付きの図案と購入リストをダウンロードします。",
+    "supportedSystems": "対応する色番号システム",
+    "tryNow": "今すぐ試す"
   }
 }
