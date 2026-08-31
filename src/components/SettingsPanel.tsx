@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 interface SettingsPanelProps {
   guidanceMode: 'nearest' | 'largest' | 'edge-first';
@@ -27,21 +28,24 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
   onEnableCelebrationChange,
   onClose
 }) => {
+  const t = useTranslations('settings');
+  const td = useTranslations('download');
+
   // 分割线颜色选项
   const sectionLineColors = [
-    { color: '#007acc', name: '蓝色' },
-    { color: '#28a745', name: '绿色' },
-    { color: '#dc3545', name: '红色' },
-    { color: '#6f42c1', name: '紫色' },
-    { color: '#fd7e14', name: '橙色' },
-    { color: '#6c757d', name: '灰色' }
+    { color: '#007acc', name: td('colorNames.blue') },
+    { color: '#28a745', name: td('colorNames.green') },
+    { color: '#dc3545', name: td('colorNames.red') },
+    { color: '#6f42c1', name: td('colorNames.purple') },
+    { color: '#fd7e14', name: td('colorNames.orange') },
+    { color: '#6c757d', name: td('colorNames.gray') }
   ];
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-start justify-end">
       <div className="w-80 max-w-[90vw] h-full bg-white shadow-lg flex flex-col">
         {/* 头部 */}
         <div className="flex items-center justify-between p-4 border-b border-gray-200">
-          <h2 className="text-lg font-medium text-gray-800">设置</h2>
+          <h2 className="text-lg font-medium text-gray-800">{t('title')}</h2>
           <button
             onClick={onClose}
             className="text-gray-500 hover:text-gray-700"
@@ -56,7 +60,7 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
         <div className="flex-1 overflow-y-auto p-4 space-y-6">
           {/* 引导设置 */}
           <div>
-            <h3 className="text-base font-medium text-gray-800 mb-3">智能引导</h3>
+            <h3 className="text-base font-medium text-gray-800 mb-3">{t('smartGuide')}</h3>
             <div className="space-y-3">
               <label className="flex items-center">
                 <input
@@ -68,8 +72,8 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
                   className="mr-3 text-blue-600"
                 />
                 <div>
-                  <div className="text-sm font-medium text-gray-700">最近优先</div>
-                  <div className="text-xs text-gray-500">推荐距离最近的格子</div>
+                  <div className="text-sm font-medium text-gray-700">{t('nearestFirst')}</div>
+                  <div className="text-xs text-gray-500">{t('nearestDesc')}</div>
                 </div>
               </label>
 
@@ -83,8 +87,8 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
                   className="mr-3 text-blue-600"
                 />
                 <div>
-                  <div className="text-sm font-medium text-gray-700">大块优先</div>
-                  <div className="text-xs text-gray-500">优先推荐大色块区域</div>
+                  <div className="text-sm font-medium text-gray-700">{t('largestFirst')}</div>
+                  <div className="text-xs text-gray-500">{t('largestDesc')}</div>
                 </div>
               </label>
 
@@ -98,8 +102,8 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
                   className="mr-3 text-blue-600"
                 />
                 <div>
-                  <div className="text-sm font-medium text-gray-700">边缘优先</div>
-                  <div className="text-xs text-gray-500">先完成边缘，再填充内部</div>
+                  <div className="text-sm font-medium text-gray-700">{t('edgeFirst')}</div>
+                  <div className="text-xs text-gray-500">{t('edgeDesc')}</div>
                 </div>
               </label>
             </div>
@@ -107,13 +111,13 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
 
           {/* 显示设置 */}
           <div>
-            <h3 className="text-base font-medium text-gray-800 mb-3">显示设置</h3>
+            <h3 className="text-base font-medium text-gray-800 mb-3">{t('displaySettings')}</h3>
             <div className="space-y-4">
               {/* 分割线开关 */}
               <label className="flex items-center justify-between">
                 <div>
-                  <div className="text-sm font-medium text-gray-700">显示分割线</div>
-                  <div className="text-xs text-gray-500">将画布分割成区块帮助定位</div>
+                  <div className="text-sm font-medium text-gray-700">{t('showSectionLines')}</div>
+                  <div className="text-xs text-gray-500">{t('sectionDesc')}</div>
                 </div>
                 <input
                   type="checkbox"
@@ -129,7 +133,7 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
                   {/* 分割线间隔 */}
                   <div>
                     <label className="text-sm font-medium text-gray-700 block mb-2">
-                      分割间隔
+                      {t('sectionInterval')}
                     </label>
                     <div className="flex items-center space-x-3">
                       <input
@@ -141,7 +145,7 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
                         className="flex-1 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
                       />
                       <span className="text-sm font-medium text-gray-700 min-w-[3rem]">
-                        {gridSectionInterval} 格
+                        {gridSectionInterval} {t('cells')}
                       </span>
                     </div>
                   </div>
@@ -149,7 +153,7 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
                   {/* 分割线颜色 */}
                   <div>
                     <label className="text-sm font-medium text-gray-700 block mb-2">
-                      分割线颜色
+                      {t('sectionLineColor')}
                     </label>
                     <div className="flex gap-2 flex-wrap">
                       {sectionLineColors.map((colorOption) => (
@@ -173,8 +177,8 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
               {/* 庆祝动画开关 */}
               <label className="flex items-center justify-between">
                 <div>
-                  <div className="text-sm font-medium text-gray-700">庆祝动画</div>
-                  <div className="text-xs text-gray-500">完成颜色时显示撒花效果</div>
+                  <div className="text-sm font-medium text-gray-700">{t('celebrationAnim')}</div>
+                  <div className="text-xs text-gray-500">{t('celebrationDesc')}</div>
                 </div>
                 <input
                   type="checkbox"
@@ -190,27 +194,27 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({
 
           {/* 进度重置 */}
           <div>
-            <h3 className="text-base font-medium text-gray-800 mb-3">数据管理</h3>
+            <h3 className="text-base font-medium text-gray-800 mb-3">{t('dataManagement')}</h3>
             <div className="space-y-3">
               <button className="w-full py-2 px-4 bg-orange-100 text-orange-700 rounded-lg hover:bg-orange-200 transition-colors text-sm">
-                导出进度数据
+                {t('exportProgress')}
               </button>
               
               <button className="w-full py-2 px-4 bg-red-100 text-red-700 rounded-lg hover:bg-red-200 transition-colors text-sm">
-                重置所有进度
+                {t('resetProgress')}
               </button>
             </div>
           </div>
 
           {/* 关于信息 */}
           <div>
-            <h3 className="text-base font-medium text-gray-800 mb-3">关于</h3>
+            <h3 className="text-base font-medium text-gray-800 mb-3">{t('about')}</h3>
             <div className="text-sm text-gray-600 space-y-2">
-              <p>专心拼豆模式 v1.0</p>
-              <p>专为手机设计的拼豆助手</p>
+              <p>{t('focusModeVersion')}</p>
+              <p>{t('mobileOptimized')}</p>
               <div className="pt-2 text-xs text-gray-500">
-                <p>💡 提示：长按格子可以快速标记</p>
-                <p>💡 提示：双指缩放可以查看细节</p>
+                <p>{'💡 '}{t('tipLongPress')}</p>
+                <p>{'💡 '}{t('tipPinchZoom')}</p>
               </div>
             </div>
           </div>

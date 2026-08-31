@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { MappedPixel } from '../utils/pixelation';
 import { getColorKeyByHex, ColorSystem } from '../utils/colorSystemUtils';
+import { useTranslations } from 'next-intl';
 
 interface MagnifierToolProps {
   isActive: boolean;
@@ -38,6 +39,8 @@ const MagnifierTool: React.FC<MagnifierToolProps> = ({
   onActivateFloating,
   highlightColorKey
 }) => {
+  const t = useTranslations('magnifier');
+
   // 计算初始位置，确保在屏幕中央
   const getInitialPosition = () => ({
     x: Math.max(50, (window.innerWidth - 400) / 2),
@@ -289,7 +292,7 @@ const MagnifierTool: React.FC<MagnifierToolProps> = ({
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
             </svg>
-            <span>在画布上拖拽选择要放大的区域</span>
+            <span>{t('dragToSelect')}</span>
           </div>
         </div>
       )}
@@ -317,7 +320,7 @@ const MagnifierTool: React.FC<MagnifierToolProps> = ({
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
               </svg>
-              <span className="text-sm font-medium">放大镜 ({getSelectionDimensions().width}×{getSelectionDimensions().height})</span>
+              <span className="text-sm font-medium">{t('title')} ({getSelectionDimensions().width}×{getSelectionDimensions().height})</span>
             </div>
             
             <div className="flex items-center gap-2">
@@ -325,7 +328,7 @@ const MagnifierTool: React.FC<MagnifierToolProps> = ({
               <button
                 onClick={onClearSelection}
                 className="p-1 hover:bg-white/20 rounded transition-colors"
-                title="重新选择区域"
+                title={t('reselectArea')}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
@@ -336,7 +339,7 @@ const MagnifierTool: React.FC<MagnifierToolProps> = ({
               <button
                 onClick={onToggle}
                 className="p-1 hover:bg-white/20 rounded transition-colors"
-                title="关闭放大镜"
+                title={t('closeMagnifier')}
               >
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
@@ -364,7 +367,7 @@ const MagnifierTool: React.FC<MagnifierToolProps> = ({
                     style={{ backgroundColor: selectedColor.color }}
                   ></div>
                   <span className="text-gray-700 dark:text-gray-300">
-                    当前: {getColorKeyByHex(selectedColor.color, selectedColorSystem)}
+                    {t('current')}: {getColorKeyByHex(selectedColor.color, selectedColorSystem)}
                   </span>
                 </div>
               </div>

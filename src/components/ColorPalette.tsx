@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { getDisplayColorKey, ColorSystem } from '../utils/colorSystemUtils';
+import { useTranslations } from 'next-intl';
 
 // Define the structure of the color data expected by the palette
 interface ColorData {
@@ -54,9 +55,10 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({
   onColorReplaceToggle,
   onColorReplace
 }) => {
+  const t = useTranslations('palette');
   if (!colors || colors.length === 0) {
     // Apply dark mode text color
-    return <p className="text-xs text-center text-gray-500 dark:text-gray-400 py-2">当前图纸无可用颜色。</p>;
+    return <p className="text-xs text-center text-gray-500 dark:text-gray-400 py-2">{t('noColors')}</p>;
   }
 
   // 确定要显示的颜色集合
@@ -84,14 +86,14 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                 </svg>
-                只显示图中颜色
+                {t('showImageColors')}
               </>
             ) : (
               <>
                 <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" strokeLinejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zM21 5a2 2 0 00-2-2h-4a2 2 0 00-2 2v12a4 4 0 004 4h4a2 2 0 002-2V5z" />
                 </svg>
-                展开完整色板 ({fullPaletteColors.length} 色)
+                {t('expandFullPalette')} ({fullPaletteColors.length})
               </>
             )}
           </button>
@@ -106,19 +108,19 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-purple-600 dark:text-purple-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
               </svg>
-              <span className="text-sm font-medium text-purple-700 dark:text-purple-300">颜色替换模式</span>
+              <span className="text-sm font-medium text-purple-700 dark:text-purple-300">{t('colorReplaceMode')}</span>
             </div>
             
             {colorReplaceState.step === 'select-source' ? (
               <div className="text-xs text-purple-600 dark:text-purple-400">
-                <p className="mb-1">步骤 1/2：点击图中要被替换的颜色</p>
-                <p className="text-gray-500 dark:text-gray-400">选择后将高亮显示该颜色的所有位置</p>
+                <p className="mb-1">{t('step1SelectSource')}</p>
+                <p className="text-gray-500 dark:text-gray-400">{t('highlightPositions')}</p>
               </div>
             ) : (
               <div className="text-xs text-purple-600 dark:text-purple-400">
-                <p className="mb-1">步骤 2/2：从下方色板选择替换成的颜色</p>
+                <p className="mb-1">{t('step2SelectTarget')}</p>
                 <div className="flex items-center justify-center gap-2 mt-2">
-                  <span className="text-gray-500 dark:text-gray-400">被替换的颜色：</span>
+                  <span className="text-gray-500 dark:text-gray-400">{t('replacedColor')}:</span>
                   <div className="flex items-center gap-1">
                     <span
                       className="inline-block w-4 h-4 rounded border border-gray-400 dark:border-gray-500"
@@ -143,12 +145,12 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-orange-600 dark:text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
-              <span className="text-sm font-medium text-orange-700 dark:text-orange-300">背景擦除模式</span>
+              <span className="text-sm font-medium text-orange-700 dark:text-orange-300">{t('bgEraseMode')}</span>
             </div>
             
             <div className="text-xs text-orange-600 dark:text-orange-400">
-              <p className="mb-1">点击图中任意颜色，删除整个颜色块</p>
-              <p className="text-gray-500 dark:text-gray-400">使用洪水填充算法，一次性擦除连通的相同颜色区域</p>
+              <p className="mb-1">{t('bgEraseHelp')}</p>
+              <p className="text-gray-500 dark:text-gray-400">{t('bgEraseDesc')}</p>
             </div>
           </div>
         </div>
@@ -162,12 +164,12 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({
               <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4 text-gray-600 dark:text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12" />
               </svg>
-              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">橡皮擦模式</span>
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">{t('eraserMode')}</span>
             </div>
             
             <div className="text-xs text-gray-600 dark:text-gray-400">
-              <p className="mb-1">点击图中任意位置清除单个格子</p>
-              <p className="text-gray-500 dark:text-gray-400">逐个删除不需要的颜色，不会影响其他格子</p>
+              <p className="mb-1">{t('eraserHelp')}</p>
+              <p className="text-gray-500 dark:text-gray-400">{t('eraserDesc')}</p>
             </div>
           </div>
         </div>
@@ -184,8 +186,8 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({
                 ? 'border-red-500 bg-red-100 dark:bg-red-900 ring-2 ring-offset-1 ring-red-400 dark:ring-red-500 scale-110 shadow-md'
                 : 'border-orange-300 dark:border-orange-600 bg-orange-100 dark:bg-orange-800 hover:border-orange-500 dark:hover:border-orange-400'
             }`}
-            title={isEraseMode ? '退出一键擦除模式' : '一键擦除 (洪水填充删除相同颜色)'}
-            aria-label={isEraseMode ? '退出一键擦除模式' : '开启一键擦除模式'}
+            title={isEraseMode ? t('bgEraseMode') : t('bgEraseDesc')}
+            aria-label={isEraseMode ? t('bgEraseMode') : t('bgEraseMode')}
           >
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -209,8 +211,8 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({
                 ? 'border-purple-500 bg-purple-100 dark:bg-purple-900 ring-2 ring-offset-1 ring-purple-400 dark:ring-purple-500 scale-110 shadow-md'
                 : 'border-purple-300 dark:border-purple-600 bg-purple-100 dark:bg-purple-800 hover:border-purple-500 dark:hover:border-purple-400'
             }`}
-            title={colorReplaceState?.isActive ? '退出颜色替换模式' : '颜色替换 (将图中A颜色全部替换为B颜色)'}
-            aria-label={colorReplaceState?.isActive ? '退出颜色替换模式' : '开启颜色替换模式'}
+            title={colorReplaceState?.isActive ? t('colorReplaceMode') : t('colorReplace')}
+            aria-label={colorReplaceState?.isActive ? t('colorReplaceMode') : t('colorReplace')}
           >
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -274,10 +276,10 @@ const ColorPalette: React.FC<ColorPaletteProps> = ({
                 : 'border-gray-300 dark:border-gray-600 hover:border-gray-500 dark:hover:border-gray-400'
             } ${isTransparent ? 'bg-gray-100 dark:bg-gray-700' : ''}`}
             style={isTransparent ? {} : { backgroundColor: colorData.color }}
-            title={isTransparent 
-              ? '选择橡皮擦 (清除单元格)' 
-                : `选择 ${displayColorKey} (${colorData.color})`}
-              aria-label={isTransparent ? '选择橡皮擦' : `选择颜色 ${displayColorKey}`}
+            title={isTransparent
+              ? t('eraser')
+                : `${displayColorKey} (${colorData.color})`}
+              aria-label={isTransparent ? t('eraser') : displayColorKey}
           >
             {/* 如果是透明/橡皮擦按钮，显示叉号图标 */}
             {isTransparent ? (

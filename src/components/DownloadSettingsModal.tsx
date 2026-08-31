@@ -1,14 +1,15 @@
 import React, { useState } from 'react';
 import { GridDownloadOptions } from '../types/downloadTypes';
+import { useTranslations } from 'next-intl';
 
 // 定义可选的网格线颜色
 const gridLineColorOptions = [
-  { name: '深灰色', value: '#555555' },
-  { name: '红色', value: '#FF0000' },
-  { name: '蓝色', value: '#0000FF' },
-  { name: '绿色', value: '#008000' },
-  { name: '紫色', value: '#800080' },
-  { name: '橙色', value: '#FFA500' },
+  { nameKey: 'darkGray', value: '#555555' },
+  { nameKey: 'red', value: '#FF0000' },
+  { nameKey: 'blue', value: '#0000FF' },
+  { nameKey: 'green', value: '#008000' },
+  { nameKey: 'purple', value: '#800080' },
+  { nameKey: 'orange', value: '#FFA500' },
 ];
 
 interface DownloadSettingsModalProps {
@@ -26,6 +27,8 @@ const DownloadSettingsModal: React.FC<DownloadSettingsModalProps> = ({
   onOptionsChange,
   onDownload
 }) => {
+  const t = useTranslations('download');
+  const tc = useTranslations('common');
   // 将useState移到顶层，不管isOpen是什么值
   const [tempOptions, setTempOptions] = useState<GridDownloadOptions>({...options});
   
@@ -56,7 +59,7 @@ const DownloadSettingsModal: React.FC<DownloadSettingsModalProps> = ({
       <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden w-full max-w-md">
         <div className="p-5">
           <div className="flex justify-between items-center border-b dark:border-gray-700 pb-3 mb-4">
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">下载图纸设置</h3>
+            <h3 className="text-lg font-semibold text-gray-900 dark:text-gray-100">{t('title')}</h3>
             <button 
               onClick={onClose}
               className="text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200"
@@ -71,7 +74,7 @@ const DownloadSettingsModal: React.FC<DownloadSettingsModalProps> = ({
             {/* 显示网格线选项 */}
             <div className="flex items-center justify-between">
               <label className="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300">
-                显示网格线
+                {t('showGridLines')}
               </label>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input 
@@ -90,7 +93,7 @@ const DownloadSettingsModal: React.FC<DownloadSettingsModalProps> = ({
                 {/* 网格线间隔选项 */}
                 <div className="flex flex-col space-y-2">
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    网格线间隔 (每 N 格画一条线)
+                    {t('gridLineInterval')}
                   </label>
                   <div className="flex items-center justify-between space-x-3">
                     <input 
@@ -111,7 +114,7 @@ const DownloadSettingsModal: React.FC<DownloadSettingsModalProps> = ({
                 {/* 网格线颜色选择 */}
                 <div className="flex flex-col space-y-2">
                   <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    网格线颜色
+                    {t('gridLineColor')}
                   </label>
                   <div className="flex flex-wrap gap-2">
                     {gridLineColorOptions.map(colorOpt => (
@@ -123,7 +126,7 @@ const DownloadSettingsModal: React.FC<DownloadSettingsModalProps> = ({
                                     ${tempOptions.gridLineColor === colorOpt.value 
                                       ? 'border-blue-500 ring-2 ring-blue-500 ring-offset-1 dark:ring-offset-gray-800' 
                                       : 'border-gray-300 dark:border-gray-600 hover:border-gray-400 dark:hover:border-gray-500'}`}
-                        title={colorOpt.name}
+                        title={t(`colorNames.${colorOpt.nameKey}`)}
                       >
                         <span 
                           className="block w-6 h-6 rounded-full"
@@ -139,7 +142,7 @@ const DownloadSettingsModal: React.FC<DownloadSettingsModalProps> = ({
             {/* 显示坐标选项 */}
             <div className="flex items-center justify-between">
               <label className="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300">
-                显示坐标数字
+                {t('showCoordinates')}
               </label>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input 
@@ -155,7 +158,7 @@ const DownloadSettingsModal: React.FC<DownloadSettingsModalProps> = ({
             {/* 隐藏格内色号选项 */}
             <div className="flex items-center justify-between">
               <label className="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300">
-                隐藏格内色号
+                {t('hideColorCodes')}
               </label>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input 
@@ -171,7 +174,7 @@ const DownloadSettingsModal: React.FC<DownloadSettingsModalProps> = ({
             {/* 添加: 包含色号统计选项 */}
             <div className="flex items-center justify-between">
               <label className="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300">
-                包含色号统计
+                {t('includeStats')}
               </label>
               <label className="relative inline-flex items-center cursor-pointer">
                 <input 
@@ -188,10 +191,10 @@ const DownloadSettingsModal: React.FC<DownloadSettingsModalProps> = ({
             <div className="flex items-center justify-between">
               <div className="flex flex-col">
                 <label className="flex items-center text-sm font-medium text-gray-700 dark:text-gray-300">
-                  同时导出源数据
+                  {t('exportCsv')}
                 </label>
                 <span className="text-xs text-gray-500 dark:text-gray-400 mt-1">
-                  导出hex颜色值的CSV文件，可用于重新导入
+                  {t('exportCsvDesc')}
                 </span>
               </div>
               <label className="relative inline-flex items-center cursor-pointer">
@@ -211,13 +214,13 @@ const DownloadSettingsModal: React.FC<DownloadSettingsModalProps> = ({
               onClick={onClose}
               className="px-4 py-2 bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600 text-gray-800 dark:text-gray-200 rounded-lg transition-colors"
             >
-              取消
+              {tc('cancel')}
             </button>
             <button
               onClick={handleSave}
               className="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors"
             >
-              下载图纸
+              {t('downloadPattern')}
             </button>
           </div>
         </div>

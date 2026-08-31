@@ -5,6 +5,7 @@ import { MappedPixel } from '../utils/pixelation';
 import { TRANSPARENT_KEY } from '../utils/pixelEditingUtils';
 import { ColorReplaceState } from '../hooks/useManualEditingState';
 import { ColorSystem, getColorKeyByHex } from '../utils/colorSystemUtils';
+import { useTranslations } from 'next-intl';
 
 interface FloatingColorPaletteProps {
   colors: { key: string; color: string }[];
@@ -45,6 +46,7 @@ const FloatingColorPalette: React.FC<FloatingColorPaletteProps> = ({
   isActive,
   onActivate
 }) => {
+  const t = useTranslations('palette');
   // 计算初始位置，确保左边缘在屏幕内（小屏幕时右边缘可以超出）
   const getInitialPosition = () => ({
     x: Math.max(0, Math.min(20, window.innerWidth - 280)), // 确保左边缘至少是0
@@ -190,7 +192,7 @@ const FloatingColorPalette: React.FC<FloatingColorPaletteProps> = ({
           <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
             <path fillRule="evenodd" d="M4 2a2 2 0 00-2 2v11a3 3 0 106 0V4a2 2 0 00-2-2H4zm1 14a1 1 0 100-2 1 1 0 000 2zm5-1.757l4.9-4.9a2 2 0 000-2.828L13.485 5.1a2 2 0 00-2.828 0L10 5.757v8.486zM16 18H9.071l6-6H16a2 2 0 012 2v2a2 2 0 01-2 2z" clipRule="evenodd" />
           </svg>
-          <span className="text-sm font-medium">调色盘</span>
+          <span className="text-sm font-medium">{t('title')}</span>
         </div>
         
         <div className="flex items-center gap-1">
@@ -198,7 +200,7 @@ const FloatingColorPalette: React.FC<FloatingColorPaletteProps> = ({
           <button
             onClick={onToggleOpen}
             className="p-1 hover:bg-white/20 rounded transition-colors"
-            title="关闭调色盘"
+            title={t('title')}
           >
             <svg 
               xmlns="http://www.w3.org/2000/svg" 
@@ -223,7 +225,7 @@ const FloatingColorPalette: React.FC<FloatingColorPaletteProps> = ({
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
                 </svg>
                 <span>
-                  {colorReplaceState.step === 'select-source' ? '点击画布选择要替换的颜色' : '选择目标颜色'}
+                  {colorReplaceState.step === 'select-source' ? t('step1SelectSource') : t('step2SelectTarget')}
                 </span>
               </div>
             </div>
@@ -243,7 +245,7 @@ const FloatingColorPalette: React.FC<FloatingColorPaletteProps> = ({
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
               </svg>
-              橡皮擦
+              {t('eraser')}
             </button>
 
             {/* 一键擦除按钮 */}
@@ -258,7 +260,7 @@ const FloatingColorPalette: React.FC<FloatingColorPaletteProps> = ({
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
               </svg>
-              区域擦除
+              {t('areaErase')}
             </button>
 
             {/* 颜色替换按钮 */}
@@ -273,7 +275,7 @@ const FloatingColorPalette: React.FC<FloatingColorPaletteProps> = ({
               <svg xmlns="http://www.w3.org/2000/svg" className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16V4m0 0L3 8m4-4l4 4m6 0v12m0 0l4-4m-4 4l-4-4" />
               </svg>
-              批量替换
+              {t('batchReplace')}
             </button>
           </div>
 
@@ -283,7 +285,7 @@ const FloatingColorPalette: React.FC<FloatingColorPaletteProps> = ({
               onClick={onToggleFullPalette}
               className="w-full text-xs py-2 px-3 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors"
             >
-              {showFullPalette ? `当前色板 (${colors.length})` : `完整色板 (${fullPaletteColors.length})`}
+              {showFullPalette ? `${t('currentPalette')} (${colors.length})` : `${t('fullPalette')} (${fullPaletteColors.length})`}
             </button>
           </div>
 
@@ -330,7 +332,7 @@ const FloatingColorPalette: React.FC<FloatingColorPaletteProps> = ({
                   style={{ backgroundColor: selectedColor.color }}
                 ></div>
                 <span className="text-gray-700 dark:text-gray-300">
-                  当前: {getColorKeyByHex(selectedColor.color, selectedColorSystem)}
+                  {t('current')}: {getColorKeyByHex(selectedColor.color, selectedColorSystem)}
                 </span>
               </div>
             </div>
