@@ -4,6 +4,7 @@ import React from 'react';
 import { MappedPixel } from '../utils/pixelation';
 import { ColorSystem } from '../utils/colorSystemUtils';
 import { exportCsvData } from '../utils/imageDownloader';
+import { useTranslations } from 'next-intl';
 
 interface FocusModePreDownloadModalProps {
   isOpen: boolean;
@@ -22,6 +23,7 @@ const FocusModePreDownloadModal: React.FC<FocusModePreDownloadModalProps> = ({
   gridDimensions,
   selectedColorSystem
 }) => {
+  const t = useTranslations('focusPreDownload');
   if (!isOpen) return null;
 
   const handleDownloadAndProceed = () => {
@@ -50,7 +52,7 @@ const FocusModePreDownloadModal: React.FC<FocusModePreDownloadModalProps> = ({
             </svg>
           </div>
           <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-100">
-            进入专心拼豆模式
+            {t('title')}
           </h3>
         </div>
 
@@ -62,21 +64,21 @@ const FocusModePreDownloadModal: React.FC<FocusModePreDownloadModalProps> = ({
                 <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
               </svg>
               <div>
-                <p className="font-medium text-yellow-800 dark:text-yellow-200">重要提醒</p>
+                <p className="font-medium text-yellow-800 dark:text-yellow-200">{t('importantReminder')}</p>
                 <p className="text-yellow-700 dark:text-yellow-300">
-                  进入专心拼豆模式后，您将无法返回到当前的编辑界面。建议您先下载当前的数据文件（CSV格式）保存，以便日后重新导入使用。
+                  {t('warningText')}
                 </p>
               </div>
             </div>
           </div>
 
           <div className="space-y-2">
-            <p>专心拼豆模式特点：</p>
+            <p>{t('features')}</p>
             <ul className="text-xs space-y-1 text-gray-500 dark:text-gray-400">
-              <li>• 专为手机优化的拼豆助手</li>
-              <li>• 提供颜色引导和进度追踪</li>
-              <li>• 支持触摸操作和缩放查看</li>
-              <li>• 退出后将丢失当前编辑状态</li>
+              <li>• {t('feature1')}</li>
+              <li>• {t('feature2')}</li>
+              <li>• {t('feature3')}</li>
+              <li>• {t('feature4')}</li>
             </ul>
           </div>
         </div>
@@ -90,21 +92,21 @@ const FocusModePreDownloadModal: React.FC<FocusModePreDownloadModalProps> = ({
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
             </svg>
-            <span>下载数据文件并进入</span>
+            <span>{t('downloadAndEnter')}</span>
           </button>
           
           <button
             onClick={onProceedWithoutDownload}
             className="w-full py-2.5 px-4 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-medium transition-all duration-200"
           >
-            直接进入（不下载）
+            {t('enterDirectly')}
           </button>
           
           <button
             onClick={onClose}
             className="w-full py-2 px-4 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 text-sm transition-colors"
           >
-            取消
+            {t('cancel')}
           </button>
         </div>
       </div>

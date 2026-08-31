@@ -1,4 +1,5 @@
 import React from 'react';
+import { useTranslations } from 'next-intl';
 
 interface ProgressBarProps {
   progressPercentage: number;
@@ -15,6 +16,7 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   progressPercentage,
   recommendedCell
 }) => {
+  const t = useTranslations('focus');
   // 生成7个圆点来表示进度
   const progressDots = Array.from({ length: 7 }, (_, index) => {
     const threshold = (index + 1) * (100 / 7);
@@ -41,9 +43,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
       
       <div className="text-xs text-gray-500">
         {recommendedCell ? (
-          <span>下一块 → {recommendedCell.row + 1},{recommendedCell.col + 1}</span>
+          <span>{t('nextBlock')} → {recommendedCell.row + 1},{recommendedCell.col + 1}</span>
         ) : (
-          <span>已完成当前颜色</span>
+          <span>{t('colorCompleted')}</span>
         )}
       </div>
     </div>

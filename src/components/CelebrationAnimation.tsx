@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface CelebrationAnimationProps {
   isVisible: boolean;
@@ -25,6 +26,7 @@ const CelebrationAnimation: React.FC<CelebrationAnimationProps> = ({
 }) => {
   const [particles, setParticles] = useState<Particle[]>([]);
   const [confetti, setConfetti] = useState<Particle[]>([]);
+  const t = useTranslations('celebration');
 
   useEffect(() => {
     if (!isVisible) return;
@@ -171,10 +173,10 @@ const CelebrationAnimation: React.FC<CelebrationAnimationProps> = ({
         }}
       >
         <div className="text-4xl font-bold text-yellow-400 drop-shadow-lg animate-pulse">
-          🎉完成🎉
+          {t('completed')}
         </div>
         <div className="text-lg text-white drop-shadow-md mt-2">
-          这个颜色拼完了！
+          {t('colorDone')}
         </div>
       </div>
     </div>

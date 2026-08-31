@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useTranslations } from 'next-intl';
 
 interface ColorInfo {
   color: string;
@@ -20,6 +21,9 @@ const ColorPanel: React.FC<ColorPanelProps> = ({
   onColorSelect,
   onClose
 }) => {
+  const t = useTranslations('focus');
+  const tc = useTranslations('common');
+
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState<'progress' | 'name' | 'total'>('progress');
 
@@ -57,7 +61,7 @@ const ColorPanel: React.FC<ColorPanelProps> = ({
           <div className="relative">
             <input
               type="text"
-              placeholder="搜索颜色..."
+              placeholder={t('searchColors')}
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
               className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
@@ -80,9 +84,9 @@ const ColorPanel: React.FC<ColorPanelProps> = ({
             onChange={(e) => setSortBy(e.target.value as 'progress' | 'name' | 'total')}
             className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
-            <option value="progress">按进度排序</option>
-            <option value="name">按名称排序</option>
-            <option value="total">按数量排序</option>
+            <option value="progress">{t('sortByProgress')}</option>
+            <option value="name">{t('sortByName')}</option>
+            <option value="total">{t('sortByQuantity')}</option>
           </select>
         </div>
 
@@ -157,7 +161,7 @@ const ColorPanel: React.FC<ColorPanelProps> = ({
             onClick={onClose}
             className="w-full py-3 bg-gray-500 text-white rounded-lg hover:bg-gray-600 transition-colors"
           >
-            关闭
+            {tc('close')}
           </button>
         </div>
       </div>

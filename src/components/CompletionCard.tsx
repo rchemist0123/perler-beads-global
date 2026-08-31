@@ -1,5 +1,6 @@
 import React, { useState, useRef, useCallback } from 'react';
 import { MappedPixel } from '../utils/pixelation';
+import { useTranslations } from 'next-intl';
 
 interface CompletionCardProps {
   isVisible: boolean;
@@ -16,6 +17,9 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
   totalElapsedTime,
   onClose
 }) => {
+  const t = useTranslations('completion');
+  const tc = useTranslations('common');
+
   const [userPhoto, setUserPhoto] = useState<string | null>(null);
   const [isCapturing, setIsCapturing] = useState(false);
   const [cameraError, setCameraError] = useState(false);
@@ -48,11 +52,11 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
     const secs = seconds % 60;
-    
+
     if (hours > 0) {
-      return `${hours}小时${minutes}分钟`;
+      return t('timeFormat', { hours, minutes });
     } else {
-      return `${minutes}分${secs}秒`;
+      return `${minutes}${t('minutes')}${secs}${t('seconds')}`;
     }
   };
 
@@ -235,7 +239,7 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
           ctx.textAlign = 'center';
           ctx.shadowColor = 'rgba(0,0,0,0.3)';
           ctx.shadowBlur = 8;
-          ctx.fillText('🎉 作品完成 🎉', cardWidth / 2, 80);
+          ctx.fillText(`🎉 ${t('title')} 🎉`, cardWidth / 2, 80);
           ctx.shadowBlur = 0;
 
           // 底部信息区域：直接显示文字
@@ -247,12 +251,12 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
           ctx.textAlign = 'center';
           ctx.shadowColor = 'rgba(0,0,0,0.5)';
           ctx.shadowBlur = 8;
-          ctx.fillText(`⏱️ ${formatTime(totalElapsedTime)} | 🔗 完成 ${totalBeads} 颗豆子`, cardWidth / 2, infoY + 40);
+          ctx.fillText(`⏱️ ${t('totalTime', { time: formatTime(totalElapsedTime) })} | 🔗 ${t('totalBeads', { count: totalBeads })}`, cardWidth / 2, infoY + 40);
 
           // 底部品牌信息
           ctx.font = '14px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
           ctx.fillStyle = 'rgba(255,255,255,0.7)';
-          ctx.fillText('七卡瓦拼豆底稿生成器', cardWidth / 2, cardHeight - 50);
+          ctx.fillText(t('brandName'), cardWidth / 2, cardHeight - 50);
           ctx.font = '12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
           ctx.fillStyle = 'rgba(255,255,255,0.5)';
           ctx.fillText('perlerbeads.zippland.com', cardWidth / 2, cardHeight - 25);
@@ -320,7 +324,7 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
           ctx.textAlign = 'center';
           ctx.shadowColor = 'rgba(0,0,0,0.5)';
           ctx.shadowBlur = 8;
-          ctx.fillText(`⏱️ 总用时 ${formatTime(totalElapsedTime)} | 🔗 共完成 ${totalBeads} 颗豆子`, cardWidth / 2, infoCardY + 35);
+          ctx.fillText(`⏱️ ${t('totalTime', { time: formatTime(totalElapsedTime) })} | 🔗 ${t('totalBeads', { count: totalBeads })}`, cardWidth / 2, infoCardY + 35);
 
           // 添加小的拼豆原图作为装饰
           if (thumbnailDataURL) {
@@ -365,7 +369,7 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
               ctx.textAlign = 'center';
               ctx.shadowColor = 'rgba(0,0,0,0.5)';
               ctx.shadowBlur = 4;
-              ctx.fillText('七卡瓦拼豆底稿生成器', cardWidth / 2, cardHeight - 40);
+              ctx.fillText(t('brandName'), cardWidth / 2, cardHeight - 40);
               ctx.font = '12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
               ctx.fillStyle = 'rgba(255,255,255,0.6)';
               ctx.fillText('perlerbeads.zippland.com', cardWidth / 2, cardHeight - 20);
@@ -381,7 +385,7 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
             ctx.textAlign = 'center';
             ctx.shadowColor = 'rgba(0,0,0,0.5)';
             ctx.shadowBlur = 4;
-            ctx.fillText('七卡瓦拼豆底稿生成器', cardWidth / 2, cardHeight - 40);
+            ctx.fillText(t('brandName'), cardWidth / 2, cardHeight - 40);
             ctx.font = '12px system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif';
             ctx.fillStyle = 'rgba(255,255,255,0.6)';
             ctx.fillText('perlerbeads.zippland.com', cardWidth / 2, cardHeight - 20);
@@ -393,14 +397,14 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
       };
       userImg.src = userPhoto;
     });
-  }, [userPhoto, totalElapsedTime, generateThumbnail, totalBeads]);
+  }, [userPhoto, totalElapsedTime, generateThumbnail, totalBeads, t]);
 
   // 下载打卡图
   const downloadCard = async () => {
     const cardDataURL = await generateCompletionCard();
     if (cardDataURL) {
       const link = document.createElement('a');
-      link.download = `拼豆完成打卡-${new Date().toLocaleDateString()}.jpg`;
+      link.download = `perler-beads-completion-${new Date().toLocaleDateString()}.jpg`;
       link.href = cardDataURL;
       link.click();
     }
@@ -414,11 +418,11 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
         <div className="p-6">
           <div className="text-center mb-6">
             <h2 className="text-2xl font-bold text-gray-800 mb-2">
-              🎉 作品完成 🎉
+              {'🎉 '}{t('title')}{' 🎉'}
             </h2>
             <div className="text-gray-600 space-y-1">
-              <p>总用时：{formatTime(totalElapsedTime)}</p>
-              <p>共完成：{totalBeads} 颗豆子</p>
+              <p>{t('totalTime', { time: formatTime(totalElapsedTime) })}</p>
+              <p>{t('totalBeads', { count: totalBeads })}</p>
             </div>
           </div>
 
@@ -427,13 +431,12 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
               {!isCapturing ? (
                 <div>
                   <p className="text-gray-600 mb-4">
-                    拍一张照片生成专属打卡图吧！
+                    {t('takePhoto')}
                   </p>
                   {cameraError && (
                     <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-3 mb-4">
                       <p className="text-yellow-800 text-sm">
-                        📱 无法访问相机，可能是权限限制或设备不支持。<br/>
-                        你可以选择使用作品图生成打卡图。
+                        {t('cameraError')}
                       </p>
                     </div>
                   )}
@@ -442,13 +445,13 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
                       onClick={startCamera}
                       className="w-full bg-blue-500 text-white px-6 py-3 rounded-lg hover:bg-blue-600 transition-colors"
                     >
-                      📸 开启相机拍照
+                      {'📸 '}{t('openCamera')}
                     </button>
                     <button
                       onClick={skipPhoto}
                       className="w-full bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors"
                     >
-                      🎨 跳过拍照，使用作品图
+                      {'🎨 '}{t('skipPhoto')}
                     </button>
                   </div>
                 </div>
@@ -464,7 +467,7 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
                     onClick={takePhoto}
                     className="bg-green-500 text-white px-6 py-3 rounded-lg hover:bg-green-600 transition-colors mr-2"
                   >
-                    📸 拍照
+                    {'📸 '}{t('capturePhoto')}
                   </button>
                   <button
                     onClick={() => {
@@ -474,7 +477,7 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
                     }}
                     className="bg-gray-500 text-white px-4 py-3 rounded-lg hover:bg-gray-600 transition-colors"
                   >
-                    取消
+                    {tc('cancel')}
                   </button>
                 </div>
               )}
@@ -484,7 +487,7 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src={userPhoto}
-                alt="用户照片"
+                alt="photo"
                 className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
               />
               <div className="space-y-3">
@@ -492,13 +495,13 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
                   onClick={downloadCard}
                   className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-3 rounded-lg hover:from-purple-600 hover:to-pink-600 transition-colors"
                 >
-                  📥 下载打卡图
+                  {'📥 '}{t('downloadCard')}
                 </button>
                 <button
                   onClick={() => setUserPhoto(null)}
                   className="w-full bg-gray-500 text-white py-2 rounded-lg hover:bg-gray-600 transition-colors"
                 >
-                  重新拍照
+                  {t('retakePhoto')}
                 </button>
               </div>
             </div>
@@ -509,7 +512,7 @@ const CompletionCard: React.FC<CompletionCardProps> = ({
               onClick={onClose}
               className="w-full bg-gray-100 text-gray-600 py-2 rounded-lg hover:bg-gray-200 transition-colors"
             >
-              稍后再说
+              {t('later')}
             </button>
           </div>
         </div>
