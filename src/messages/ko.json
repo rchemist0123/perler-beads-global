@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "title": "칠카와 펄러비즈 도안 생성기 | Perler Beads Generator",
+    "description": "이미지를 업로드하고, 정밀도를 조정하고, 원클릭으로 픽셀 아트 도안을 생성하세요",
+    "appleWebAppTitle": "펄러비즈 생성기"
+  },
+  "landing": {
+    "nav": {
+      "brand": "Perler Beads Generator",
+      "getStarted": "시작하기"
+    },
+    "hero": {
+      "title": "펄러비즈 도안을 쉽게 만들어보세요",
+      "subtitle": "이미지를 업로드하면 스마트한 픽셀 아트 도안으로 변환됩니다",
+      "description": "업로드하고, 조정하고, 다운로드하세요. 간단하고 실용적인 펄러비즈 도안 생성 도구입니다.",
+      "cta": "지금 시작하기",
+      "ctaSecondary": "기능 살펴보기"
+    },
+    "features": {
+      "title": "주요 기능",
+      "subtitle": "펄러비즈 도안 생성에 필요한 모든 것",
+      "pixelization": {
+        "title": "스마트 픽셀화",
+        "description": "주도색 기반 지능형 픽셀화로 깨끗한 도안을 생성합니다. 정밀도를 자유롭게 조절하세요."
+      },
+      "palette": {
+        "title": "다중 브랜드 색상표",
+        "description": "MARD, COCO, 만만, 판판, 미샤오워 등 다양한 브랜드 색상 체계를 지원합니다."
+      },
+      "merging": {
+        "title": "자동 색상 병합",
+        "description": "BFS 기반 유사 색상 자동 병합으로 잡색을 제거하고 깨끗한 색 영역을 만듭니다."
+      },
+      "background": {
+        "title": "배경 제거",
+        "description": "경계 홍수 채우기 알고리즘으로 외부 배경을 자동 감지하고 제거합니다."
+      },
+      "editing": {
+        "title": "수동 편집",
+        "description": "세밀한 부분을 직접 수정할 수 있습니다. 색상 선택, 칠하기, 지우기 도구를 제공합니다."
+      },
+      "export": {
+        "title": "도안 & 구매 목록 내보내기",
+        "description": "색상 키가 표시된 도안과 각 색상별 수량이 포함된 구매 목록을 PNG로 다운로드하세요."
+      }
+    },
+    "howItWorks": {
+      "title": "사용 방법",
+      "subtitle": "3단계로 간단하게",
+      "step1": {
+        "title": "이미지 업로드",
+        "description": "JPG 또는 PNG 이미지를 드래그하거나 클릭하여 업로드하세요."
+      },
+      "step2": {
+        "title": "조정하기",
+        "description": "정밀도, 색상 병합 강도, 색상표를 선택하고 원하는 대로 조정하세요."
+      },
+      "step3": {
+        "title": "다운로드",
+        "description": "완성된 도안과 구매 목록을 다운로드하여 바로 펄러비즈를 시작하세요."
+      }
+    },
+    "colorSystems": {
+      "title": "지원 색상 체계",
+      "subtitle": "다양한 브랜드의 색상 체계를 지원합니다"
+    },
+    "footer": {
+      "copyright": "Perler Beads Generator. Apache 2.0 License.",
+      "builtWith": "Next.js와 Canvas API로 제작"
+    }
+  }
+}

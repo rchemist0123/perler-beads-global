@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "title": "Perler Beads Pattern Generator",
+    "description": "Upload images, adjust precision, and generate pixel art patterns with one click",
+    "appleWebAppTitle": "Beads Generator"
+  },
+  "landing": {
+    "nav": {
+      "brand": "Perler Beads Generator",
+      "getStarted": "Get Started"
+    },
+    "hero": {
+      "title": "Create Perler Bead Patterns with Ease",
+      "subtitle": "Upload any image and transform it into a smart pixel art pattern",
+      "description": "Upload, adjust, and download. A simple yet powerful tool for generating perler bead patterns.",
+      "cta": "Get Started Now",
+      "ctaSecondary": "Explore Features"
+    },
+    "features": {
+      "title": "Features",
+      "subtitle": "Everything you need to create perfect bead patterns",
+      "pixelization": {
+        "title": "Smart Pixelization",
+        "description": "Intelligent pixelization based on dominant colors for clean patterns. Freely adjust the granularity."
+      },
+      "palette": {
+        "title": "Multi-brand Color Palettes",
+        "description": "Supports MARD, COCO, Manman, Panpan, Mixiaowo and other brand color systems."
+      },
+      "merging": {
+        "title": "Auto Color Merging",
+        "description": "BFS-based automatic merging of similar colors to eliminate noise and create clean color regions."
+      },
+      "background": {
+        "title": "Background Removal",
+        "description": "Automatically detects and removes external backgrounds using boundary flood fill algorithm."
+      },
+      "editing": {
+        "title": "Manual Editing",
+        "description": "Fine-tune details manually with color picker, paint, and eraser tools."
+      },
+      "export": {
+        "title": "Export Patterns & Lists",
+        "description": "Download patterns with color keys and purchase lists with per-color bead counts as PNG."
+      }
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "Simple as 1-2-3",
+      "step1": {
+        "title": "Upload Image",
+        "description": "Drag and drop or click to upload a JPG or PNG image."
+      },
+      "step2": {
+        "title": "Adjust Settings",
+        "description": "Choose granularity, color merge strength, and color palette to customize your pattern."
+      },
+      "step3": {
+        "title": "Download",
+        "description": "Download your finished pattern and purchase list to start making perler beads."
+      }
+    },
+    "colorSystems": {
+      "title": "Supported Color Systems",
+      "subtitle": "Compatible with major bead brand color systems"
+    },
+    "footer": {
+      "copyright": "Perler Beads Generator. Apache 2.0 License.",
+      "builtWith": "Built with Next.js and Canvas API"
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "metadata": {
+    "title": "アイロンビーズ図案ジェネレーター | Perler Beads Generator",
+    "description": "画像をアップロードして、精度を調整し、ワンクリックでピクセルアート図案を生成",
+    "appleWebAppTitle": "ビーズジェネレーター"
+  },
+  "landing": {
+    "nav": {
+      "brand": "Perler Beads Generator",
+      "getStarted": "始める"
+    },
+    "hero": {
+      "title": "アイロンビーズの図案を簡単に作成",
+      "subtitle": "画像をアップロードして、スマートなピクセルアート図案に変換",
+      "description": "アップロード、調整、ダウンロード。シンプルで実用的なアイロンビーズ図案生成ツール。",
+      "cta": "今すぐ始める",
+      "ctaSecondary": "機能を見る"
+    },
+    "features": {
+      "title": "機能",
+      "subtitle": "完璧なビーズ図案を作るために必要なすべて",
+      "pixelization": {
+        "title": "スマートピクセル化",
+        "description": "主要色に基づくインテリジェントなピクセル化で、きれいな図案を生成。粒度を自由に調整できます。"
+      },
+      "palette": {
+        "title": "マルチブランドカラーパレット",
+        "description": "MARD、COCO、漫漫、盼盼、咪小窝など、様々なブランドのカラーシステムに対応。"
+      },
+      "merging": {
+        "title": "自動カラーマージ",
+        "description": "BFSベースの類似色自動マージで、ノイズを除去し、きれいな色領域を作成。"
+      },
+      "background": {
+        "title": "背景除去",
+        "description": "境界フラッドフィルアルゴリズムで外部背景を自動検出・除去。"
+      },
+      "editing": {
+        "title": "手動編集",
+        "description": "カラーピッカー、ペイント、消しゴムツールで細部を手動で微調整。"
+      },
+      "export": {
+        "title": "図案＆リストのエクスポート",
+        "description": "カラーキー付き図案と色別ビーズ数量リストをPNGでダウンロード。"
+      }
+    },
+    "howItWorks": {
+      "title": "使い方",
+      "subtitle": "3ステップで簡単に",
+      "step1": {
+        "title": "画像アップロード",
+        "description": "JPGまたはPNG画像をドラッグ＆ドロップまたはクリックしてアップロード。"
+      },
+      "step2": {
+        "title": "設定を調整",
+        "description": "粒度、カラーマージ強度、カラーパレットを選択してカスタマイズ。"
+      },
+      "step3": {
+        "title": "ダウンロード",
+        "description": "完成した図案と購入リストをダウンロードして、ビーズ制作を始めましょう。"
+      }
+    },
+    "colorSystems": {
+      "title": "対応カラーシステム",
+      "subtitle": "主要ビーズブランドのカラーシステムに対応"
+    },
+    "footer": {
+      "copyright": "Perler Beads Generator. Apache 2.0 License.",
+      "builtWith": "Next.jsとCanvas APIで構築"
+    }
+  }
+}
